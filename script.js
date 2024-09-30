@@ -32,18 +32,23 @@ function createBoard(num) {
 }
 createBoard(level);
 
-//!======================> create a level <=================================
+//!<======================> create a level <=================================>
+let ActiveBtn = null;
 function changeLevel(levelName) {
-  console.log("level ChangeLevel 1=> ", levelName);
-//  if (levelName) {
-//   document.querySelector('.btn').classList.remove
-//  }
+  //? <==== Active Button
+  const ClickBtn = document.getElementById(
+    levelName.charAt(0).toUpperCase() + levelName.slice(1)
+  );
+  if (ActiveBtn) ActiveBtn.classList.remove("active");
+  ClickBtn.classList.add("active");
+  ActiveBtn = ClickBtn;
+  //?===========>
+
   digit = difficultyLevel[levelName].digit;
   diff = difficultyLevel[levelName].diff;
   level = digit * digit;
   Board.style.gridTemplateColumns = `repeat(${digit} , 1fr )`;
   Board.style.gridTemplateRows = `repeat(${digit} , 1fr) `;
-  console.log("level ChangeLevel 2=> ", level);
   createBoard(level);
   GameRestart(level);
 }
